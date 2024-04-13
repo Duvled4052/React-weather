@@ -1,23 +1,107 @@
 import logo from './logo.svg';
 import './App.css';
+import Search from './components/Search';
+import Response from './components/Response'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import cors from 'cors';
+import axios from 'axios';
+
+
+
+export const WeatherIcons = {
+  "01d": "icons/sun.svg",
+  "01n": "icons/moon.svg",
+  "02d": "icons/sun.svg",
+  "02n": "icons/moon.svg",
+
+  "03d": "icons/cloud.svg",
+  "03n": "icons/cloud.svg",
+  "04d": "icons/cloud.svg",
+  "04n": "icons/cloud.svg",
+
+  "09d": "icons/rain.svg",
+  "09n": "icons/rain.svg",
+  "10d": "icons/rain.svg",
+  "10n": "icons/rain.svg",
+
+  "11d": "icons/lightning.svg",
+  "11n": "icons/lightning.svg",
+
+  "13d": "icons/snow.svg",
+  "13n": "icons/snow.svg",
+
+  "50d": "icons/wind.svg",
+  "50n": "icons/wind.svg",
+  
+};
+
 
 function App() {
+//   const cors = require("cors");
+//  App.use(cors());
+
+
+  const [city, updateCity] = useState();
+  const [myfetch, setMyfetch] = useState();
+  
+  // const fetchWeather =
+
+    // useEffect(() => {
+    //    () => {
+    //     fetch(`https://api.openweathermap.org/data/2.5/weather?q=São%20Paulo&appid=68ca09b0d53386f480fd1f6ae712eb98`, {
+    //       // mode: 'no-cors',
+    //       method: 'GET',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     })
+    //       .then((resp) => resp.json())
+    //     .then((data) => {console.log(data)})
+    
+    //       // .then((data) => {
+    //       //   setMyfetch(data)
+    //       // })
+    //       .catch((err) => console.log(err))
+    //   // }
+    // // }, [])
+
+
+    // onSubmit={fetchWeather()}
+
+    // useEffect(() => {
+    // axios.get("https://api.openweathermap.org/data/2.5/weather?q=São%20Paulo&appid=68ca09b0d53386f480fd1f6ae712eb98")
+    // .then((response) => {
+    //   setMyfetch(response.data)
+    // })
+    // }, [])
+
+
+      const fetchWeather = async (e) => {
+        e.preventDefault();
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=68ca09b0d53386f480fd1f6ae712eb98`,
+        );
+        setMyfetch(response.data);
+      console.log(myfetch)
+
+      };
+
+      
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Container">
+      <form onSubmit={fetchWeather}>
+          <input placeholder="Your city" onChange={(e) => updateCity(e.target.value)} />
+          <button type="submit" onClick={console.log(city)}><img src="icons/search.svg" /></button>
+      </form>
+      {myfetch ? (
+        <Response cInfo={myfetch.clouds.all} hInfo={myfetch.main.humidity} wInfo={myfetch.wind.speed} pInfo={myfetch.main.pressure} city={myfetch.name} country={myfetch.sys.country} temp={myfetch.main.temp} desc={myfetch.weather[0].main} icon={myfetch.weather[0].icon} />
+      ) :(
+        <Search />
+      )
+      }
     </div>
   );
 }

@@ -1,0 +1,56 @@
+#aaa{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content: space-around;
+
+    margin-bottom: 10px;
+}
+
+#temp{
+    font-size: 30px;
+    font-weight:bold;
+}
+
+#location{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#image{
+    height:200px;
+    width:200px;
+}
+
+#left{
+    margin:20px;
+    text-align:left;
+
+    display:block;
+
+}
+
+
+/* SAAAAAAAAAA */
+
+.weatherImgs{
+    height:32px;
+    width:32px;
+}
+
+.infoLabel{
+    display:flex;
+    flex-direction: column;
+}
+
+.infoContainer{
+    display:flex;
+    margin:20px 65px;
+    width:65px;
+}
+
+#weatherInfo{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+}
