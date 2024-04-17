@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
-import Search from './components/Search';
+import Home from './components/Home';
 import Response from './components/Response'
 import { useState } from 'react';
-import { useEffect } from 'react';
-import cors from 'cors';
 import axios from 'axios';
 
 
@@ -38,43 +35,10 @@ export const WeatherIcons = {
 
 
 function App() {
-//   const cors = require("cors");
-//  App.use(cors());
-
-
   const [city, updateCity] = useState();
   const [myfetch, setMyfetch] = useState();
   
-  // const fetchWeather =
 
-    // useEffect(() => {
-    //    () => {
-    //     fetch(`https://api.openweathermap.org/data/2.5/weather?q=São%20Paulo&appid=68ca09b0d53386f480fd1f6ae712eb98`, {
-    //       // mode: 'no-cors',
-    //       method: 'GET',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //     })
-    //       .then((resp) => resp.json())
-    //     .then((data) => {console.log(data)})
-    
-    //       // .then((data) => {
-    //       //   setMyfetch(data)
-    //       // })
-    //       .catch((err) => console.log(err))
-    //   // }
-    // // }, [])
-
-
-    // onSubmit={fetchWeather()}
-
-    // useEffect(() => {
-    // axios.get("https://api.openweathermap.org/data/2.5/weather?q=São%20Paulo&appid=68ca09b0d53386f480fd1f6ae712eb98")
-    // .then((response) => {
-    //   setMyfetch(response.data)
-    // })
-    // }, [])
 
 
       const fetchWeather = async (e) => {
@@ -83,8 +47,6 @@ function App() {
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=68ca09b0d53386f480fd1f6ae712eb98`,
         );
         setMyfetch(response.data);
-      console.log(myfetch)
-
       };
 
       
@@ -94,12 +56,12 @@ function App() {
     <div className="Container">
       <form onSubmit={fetchWeather}>
           <input placeholder="Your city" onChange={(e) => updateCity(e.target.value)} />
-          <button type="submit" onClick={console.log(city)}><img src="icons/search.svg" /></button>
+          <button type="submit"><img src="icons/search.svg" /></button>
       </form>
       {myfetch ? (
         <Response cInfo={myfetch.clouds.all} hInfo={myfetch.main.humidity} wInfo={myfetch.wind.speed} pInfo={myfetch.main.pressure} city={myfetch.name} country={myfetch.sys.country} temp={myfetch.main.temp} desc={myfetch.weather[0].main} icon={myfetch.weather[0].icon} />
       ) :(
-        <Search />
+        <Home />
       )
       }
     </div>

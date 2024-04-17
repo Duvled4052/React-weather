@@ -7,9 +7,6 @@
 
 body {
   font-family: "Roboto", Arial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   background-color: #22304d;
   display:flex;
   align-items:center;
@@ -19,9 +16,12 @@ body {
 
 }
 
+@media screen and (max-width:513px) {
+  body{
+  background-color: #282c34;
+  }
+}
 
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
+
+

@@ -1,6 +1,4 @@
-import styles from "./Search.modules.css"
-
-const Search = () =>  {
+const Home = () =>  {
     return (
         <div>
             <img src={"icons/logo.png"} id="imgLogo" />
@@ -10,4 +8,4 @@ const Search = () =>  {
     )
 }
 
-export default Search
+export default Home

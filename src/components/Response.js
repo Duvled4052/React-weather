@@ -2,11 +2,11 @@ import styles from "./Response.modules.css"
 import {WeatherIcons} from "../App";
 
 
-const WeatherInfoComponent = ({icon, name, value}) => {
+const WeatherInfoComponent = ({icon, name, value, id}) => {
     return(
         <div className="infoContainer">
             <img className="weatherImgs" src={icon}/>
-            <span className="infoLabel">
+            <span className="infoLabel" id={id}>
                 {value}
                 <span>{name}</span>
             </span>
@@ -27,12 +27,11 @@ const Response = ({cInfo, hInfo, wInfo, pInfo, city, country, temp, desc, icon})
             <div id="weatherInfo">
             <WeatherInfoComponent name="Cloudiness" icon="/icons/cloud.svg" value={cInfo + "%"} />
             <WeatherInfoComponent name="Humidity" icon="/icons/droplet.svg" value={hInfo + "%"} />
-            <WeatherInfoComponent name="Wind" icon="/icons/wind.svg" value={wInfo + "m/s"} />
+            <WeatherInfoComponent name="Wind" icon="/icons/wind.svg" value={wInfo + "m/s"} id="align"/>
             <WeatherInfoComponent name="Pressure" icon="/icons/log-in-circle.svg" value={pInfo + "hPa"} />
 
         </div>
 
-        {/* <h3>Weather App</h3> */}
     </div>
     )
 }

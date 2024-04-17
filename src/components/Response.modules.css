@@ -41,16 +41,24 @@
 .infoLabel{
     display:flex;
     flex-direction: column;
+    text-align: left;
+    margin-left: 5px;
 }
 
 .infoContainer{
     display:flex;
-    margin:20px 65px;
-    width:65px;
+    width:50%;
+    box-sizing: border-box;
+    padding:10px;
+    justify-content:center;
 }
 
 #weatherInfo{
     display:flex;
     flex-direction: row;
     flex-wrap: wrap; 
+}
+
+#align{
+    width:50%;
 }
